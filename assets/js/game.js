@@ -13,6 +13,22 @@ var enemyNames = ["Roberto", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
+// wrap the game in a startGame() function
+
+// when the player wins or loses call an endGame() function 
+    // AND give the player's stats 
+    // AND ask if the player wants to play again 
+    // AND (if yes) call startGame() function to restart the game
+
+// after a player skips or defeats an enemy (and there are still more robots to fight) ask the player if they would like to shop
+    // if no, continue as normal
+    // if yes, call shop() function
+    // in the shop() function ask the player if they want to "refill" health, "upgrade" attack, or "leave" the shop
+        // if refill, subtract money points and increase health
+        // if upgrade, subtract money points and increase attack
+        // if leave alery goodbye and exit the function 
+        // if any other invalid option call shop() again
+
 var fight = function(enemyName) {
     // repeat and execute as long as the enemy-robot is alive
     while(enemyHealth > 0 && playerHealth > 0) {
