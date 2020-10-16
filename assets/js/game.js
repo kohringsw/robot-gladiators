@@ -114,7 +114,13 @@ var startGame = function() {
 
             // if we're not at the last enemy in the array
             if (playerHealth > 0 && i < enemyNames.length - 1) {
-                shop();
+                //ask if player wants to shop before the next round
+                var storeConfirm = window.confirm("The fight is over, would you like to visit the store before the next round?");
+
+                // if yes, take them to the shop() function
+                if (storeConfirm) {
+                    shop();
+                }
             }
         }
 
@@ -152,8 +158,59 @@ var endGame = function() {
 };
 
 var shop = function() {
-    console.log("entered the shop");
-}
+    // ask the player what they'd like to do
+    var shopOptionPrompt = window.prompt(
+        "would you like to REFILL your health (+20 for $7), UPGRADE your attack(+6 for $7), or LEAVE the shop? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice."
+    );
+    // use switch to carry out action
+    switch (shopOptionPrompt) {
+        
+        case "REFILL":
+        case "refill":
+
+            if (playerMoney >= 7) {
+            window.alert("Refilling the players health by 20 points for $7.");
+            // increase health and decrease money
+            playerHealth = playerHealth + 20;
+            playerMoney = playerMoney - 7;
+            }
+
+            else {
+                window.alert("You don't have enough money!");
+            }
+
+            break;
+        
+        case "UPGRADE":
+        case "upgrade":
+
+            if (playerMoney >= 7) { 
+            window.alert("Upgrading the players attack by 6 points for $7.");
+            // increase attack and decrease money
+            playerAttack = playerAttack + 6;
+            playerMoney = playerMoney - 7;
+            }
+
+            else {
+                window.alert("You don't have enough money!");
+            }
+
+            break;
+
+        case "LEAVE":
+        case "leave":
+            
+            window.alert("Leaving the shop. Goodbye.");
+            // do nothing, the shop() function will end
+            break;
+
+        default:
+            window.alert("You did not pick a valid option. Try again.");
+            // call shop() again to force player to pick a valid option
+            shop();
+            break;
+    } 
+};
 
 // startGame() function call
 startGame();
