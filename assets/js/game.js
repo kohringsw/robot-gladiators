@@ -95,7 +95,7 @@ var fight = function(enemyName) {
     }
 };
 
-// function to start a new game
+// startGame function
 var startGame = function() {
     // reset player stats
     playerHealth = 100;
@@ -111,6 +111,11 @@ var startGame = function() {
             enemyHealth = 50;
 
             fight(pickedEnemyName);
+
+            // if we're not at the last enemy in the array
+            if (playerHealth > 0 && i < enemyNames.length - 1) {
+                shop();
+            }
         }
 
         else {
@@ -122,6 +127,7 @@ var startGame = function() {
     endGame();
 };
 
+// endGame function
 var endGame = function() {
     // if player is still alive, player wins!
     if (playerHealth > 0) {
@@ -145,5 +151,9 @@ var endGame = function() {
     }
 };
 
-// start the game when the page loads
+var shop = function() {
+    console.log("entered the shop");
+}
+
+// startGame() function call
 startGame();
